@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(()=>{
+	
+		// input에서 Keyboard를 누르면 >> 누른 순간에 : keydown
+		
+	/* 	$('input').keydown(function (){
+			$('h1').text('눌러짐');
+			// 기능 발동 전에 return false; 가 있으면 원래 기능을 못 하게끔 한다.
+		}); */
+		
+		// 특정 키를 눌렀을 때 뭔가 하고 싶다면?
+		$('input').keydown(function (e){
+			$('h1').text(e.keyCode);		// keyboard ASCII 값 : 모든 키에는 고유한 값이 있음.
+			
+			if(e.keyCode==13){
+				alert('엔터 눌렀음!');	
+			} else if(e.keyCode==65){
+				return false;
+			} else if(e.keyCode==75){
+				let t = $('input').val();
+				$('input').val(t +'ㅋ');
+				return false;	// 원하는 기능 불가하게 > k 못 누르게
+			}
+			
+		});
+		
+		$('input').keyup(function(e){
+			$('h1').text('');
+		});
+		
+		//	html 자체에도 keydown 이벤트 심을 수 있음.!
+		let l = 0;
+		$('html').keydown(function( e) {
+			/* if(e.keyCode ==116){			// 현재 웹 페이지의 f5 키를 봉인(새로고침 불가)
+				return false;
+			} */
+			if(e.keyCode ==39){ // 방향키 오른쪽
+				l += 5;
+				$('h2').css('left',l + "px");
+			}
+			
+			
+		});
+		
+		
+		
+	});
+</script>
+<style type="text/css">
+	h2{
+		position : fixed;
+	}
+</style>
+</head>
+<body>
+	<input>
+	<p>
+	<h1></h1>
+	<h2>텍스트</h2>
+</body>
+</html>

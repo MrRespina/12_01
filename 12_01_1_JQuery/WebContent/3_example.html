@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#imgi {
+		position:fixed;
+		transition: all 0.5s ease-out;
+	}
+</style>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(()=>{
+		
+		/*  $('h1').each(function(i, h) {
+	 	if(i==0){
+			$(h).css('color','green');
+			$(h).css('background-color','red');
+		}else if(i==1){
+			$(h).css('color','yellow');
+			$(h).css('background-color','blue');
+		}else if(i==2){
+			$(h).css('color','pink');
+			$(h).css('background-color','teal');
+		}
+		}); */
+		
+		let arr = [
+			{
+				color:'green',
+				background:'red'
+			},
+			{
+				color:'yellow',
+				background:'blue'
+			},
+			{
+				color:'pink',
+				background:'teal'
+			},
+		];
+		
+		$('h1').each(function(i, h) {
+	 		$(h).css('color',arr[i].color);
+	 		$(h).css('background-color',arr[i].background);
+		}); 
+		
+		var i = 0;
+		setInterval(()=>{
+			if(i!=9){
+				i = i+1;
+			}else{
+				i=1;
+			}		
+				$('#imgi').attr('src','img/s'+i+'.png');
+					
+		},500);
+
+	});
+</script>
+</head>
+<body>
+	<h1>ㅋㅋㅋㅋㅋ</h1>
+	<h1>ㅎㅎㅎㅎㅎ</h1>
+	<h1>ㅂㅂㅂㅂㅂ</h1>
+	<img id="imgi" src="img/s1.png">
+</body>
+</html>

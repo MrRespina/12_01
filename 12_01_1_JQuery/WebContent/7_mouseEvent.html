@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div{
+		border : orange solid 3px;
+		width : 200px;
+		height : 200px;
+	}
+	
+	img{
+		position:fixed;
+		trasition: all 0.5s ease-out;
+		width:30px;
+		height:30px;
+	}
+</style>
+
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(()=>{
+		//alert('dd');
+		$('div').mousedown(function(){
+			$('h1').text('mousedown');
+		});
+		$('div').mouseup(function(){
+			$('h1').text('mouseup');
+		});
+		$('div').mouseenter(function(){
+			$('h1').text('mouseenter');
+		});
+		$('div').mouseleave(function(){
+			$('h1').text('mouseleave');
+		});
+
+		// DOM 객체의 정확한 좌표를 알고싶을 때(html에 약간의 여백이 존재하기 때문에 정확한 좌표 산정이 어렵다.)
+				// 선택자의 정확한 x 좌표!
+			// 선택자의 정확한 y 좌표!
+		
+		$('div').mousemove(function (e){
+			
+			//$('h2').text('mousemove : ' + e.pageX + ',' + e.pageY);
+			// div를 기준으로 한 정확한 좌표가 필요하다?
+			let divX = $('div').offset().left;
+			let divY = $('div').offset().top;	
+			let x = e.pageX - divX;
+			let y = e.pageY - divY;
+			$('h2').text('정확한 좌표 : '+x+', '+y+','+'기초 좌표 : '+e.pageX+','+e.pageY);
+					
+		});
+		
+		$('html').mousemove(function(e){
+			$('img').css('left',(e.pageX+5) + 'px');
+			$('img').css('top',(e.pageY+5) + 'px');		
+			let x = e.pageX;
+			let y = e.pageY;
+			let xx;
+			let yy;
+			if(x/255>1){
+				xx = x - ((((x/255)-1)+1)*255);
+			}else{
+				xx = x;
+			}
+			if(y/255>1){
+				let yy = y - ((((y/255)-1)+1)*255);
+			}else{
+				yy = y;
+			}
+			$('body').css('background-color','rgb('+xx+','+yy+',0)');
+			$('h3').text(xx+','+yy);
+		});
+
+		
+	});
+</script>
+</head>
+<body>
+	<div></div>
+	<h1></h1>
+	<h2></h2>
+	<h3></h3>
+	<img src="alert.png">
+</body>
+</html>

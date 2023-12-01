@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div {
+		border : pink solid 3px;
+		width : 300px;
+		height : 300px;
+	}
+</style>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(()=>{
+		$('#b1').click(()=>{
+			
+			// text()의 소괄호 내에 값을 넣지 않으면 기존값 가져오기
+			//let t = $('a').text();
+			
+			// a 태그로 이루어진 DOM 객체 속 text 변경
+			// $('a').text('유튜브로!');
+			
+			// .text() vs .html()
+			// $('a').html('유튜브로!');
+			
+			// .html() : 새로운 html 요소로 변경 가능. text()는 태그가 먹히지 않는다.
+			$('a').html('<h2>유튜브로!</h2>');
+			
+		});
+		
+		$('#b2').click(()=>{
+			
+			$('.naverA').attr('href','https://www.youtube.com');
+			// class naverA에 css를 주고싶은데 부여할게 많으면 id도 부여 가능!
+			$('.naverA').attr('id','t');
+			$('#t').css('font-size','40px');
+			
+			// 속성 지우기			removeAttr('attribute');
+			$('.naverA').removeAttr('id');
+			$('#t').css('font-size','30px');
+			
+		});
+		
+		$('#b3').click(()=>{
+			
+			// $('css선택자') or $('태그명') : 있는 것을 선택
+			//	$('<태그명>') : DOM 객체 생성
+			let m = $('<marquee></marquee>').text('테스트입니다.');
+			m.attr('behavior','alternate');
+			
+			// behavior : 스크롤방식 설정
+			//		scroll : 한쪽 방향으로만 진행(default)
+			//		alternate : 왕복
+			
+			// 요소 추가
+			$('div').append(m);	//	선택된 요소의 마지막에 추가
+			//$('div').prepend(m);	// 선택된 요소의 첫 번째에 내용 추가
+			
+			
+		});
+		
+		$('#b4').click(()=>{	
+			// remove() : DOM객체 + 그 하위요소 전부 제거
+			
+			// $('div').remove();
+			// empty() : DOM 객체의 하위 요소들만 제거
+			$('div').empty();
+			
+		});
+		
+		$('#regBtn').click(()=>{
+			
+			let m_name = $('#m_name').val();
+			let m_price = $('#m_price').val();
+			/* 
+			let td1 = $('<td></td>').text(m_name);
+			let td2 = $('<td></td>').text(m_price);
+			let tr = $('<tr></tr>').append(td1,td2);
+			 */
+			let b = $('<tr><th>'+m_name+'</th><th>'+m_price+'</th></tr>');
+			
+			$('#mtable').append(b);
+			
+			$('#m_name').val('');
+			$('#m_price').val('');
+			
+		});
+		
+	});
+</script>
+</head>
+<body>
+	메뉴 : <input id ="m_name"><p>
+	가격 : <input id = "m_price"><p>
+	<button id ="regBtn">등록</button>
+	<table id="mtable" border="1" style="border-radius:4px;font-size:25px;color:yellow;background-color:black;">
+		<tr><th>메뉴명</th><th>가격</th></tr>
+	</table>
+	<a href="https://www.naver.com" class="naverA" target="_blank">네이버로!</a>
+	<hr>
+	<button id ="b1">내용수정</button><p>
+	<button id ="b2">속성수정</button><p>
+	<button id ="b3">DOM 객체 수정</button><p>
+	<button id ="b4">DOM 객체 삭제</button><p>
+	<div></div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table{
+	
+		margin-top:20px;
+		font-size:30px;
+		border-radius: 5px;
+	
+	}
+	
+	input{
+	
+		font-size:40px;
+		text-align: right;
+	
+	}
+	
+	input::placeholder{
+	
+		font-size:40px;
+		
+	}
+	
+	button{
+		font-size:40px;
+	}
+
+</style>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+
+	$(()=>{
+		
+		$('button').click(function asdf(){		// this 지정시 화살표 함수 쓰지 않고 함수 이름 지정해줌.
+			//$('button').css('background-color','red');	// 모든 버튼이 한번에 빨강이 되버림.
+			
+			// $(this) : 클릭 이벤트 콜백 함수인 asdf()를 호출한 장본인
+			//					누른 버튼만 콜백함수가 실행되도록 해줌.
+			$(this).css('background-color','red');
+			
+			// parent() : 내가 호출할 것의 상위 객체
+			// children() : 내가 호출할 것의 하위 객체
+			// closest() : 상위에 있는 것중에서 가장 가까운 css 선택자
+			//		cf ) 특정 선택자 찾기 : find('css선택자')
+			
+			// siblings() : 동일 선상에 있는 특정 선택자.
+			
+			// $(this).parent().parent().parent().parent().css('border','blue solid 10px');
+			// let c = $(this).parent().find('input').val();
+			// alert(c);
+			
+			$(this).closest('table').css('border','blue solid 5px');
+ 			
+			$(this).parent().css('background-color','green');
+			
+			let c = $(this).siblings('input').val();
+			$(this).css('color',c);
+			
+		});
+	
+	$('td').click(function(){
+		
+		$(this).css('background-color','yellow');
+		$(this).children().css('background-color','pink');
+		$(this).find('button').css('border','green solid 3px');
+		
+	});
+
+		
+		
+		
+		
+		
+	});
+
+</script>
+</head>
+<body>
+	<table border="1" align="center">
+		<tr>
+			<td>
+				<input> <button>1</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input> <button>2</button>
+			</td>
+		</tr>
+	</table>
+	<table border="1" align="center">
+		<tr>
+			<td>
+				<input> <button>3</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input>	<button>4</button>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
